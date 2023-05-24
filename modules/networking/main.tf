@@ -16,7 +16,7 @@ resource "aws_vpc" "main_vpc" {
 }
 
 resource "aws_subnet" "public_subnet" {
-    count = length(var.public_cidrs)
+    count = var.public_sn_count
     vpc_id = aws_vpc.main_vpc.id
     cidr_block = var.public_cidrs[count.index]
     map_public_ip_on_launch = true
@@ -29,7 +29,7 @@ resource "aws_subnet" "public_subnet" {
 }
 
 resource "aws_subnet" "private_app_subnet" {
-    count = length(var.private_cidrs)
+    count = var.private_app_sn_count
     vpc_id = aws_vpc.main_vpc.id
     cidr_block = var.private_cidrs[count.index]
     availability_zone = ["us-east-1a", "us-east-1b", "us-east-1c", "us-east-1d"][count.index]
@@ -40,7 +40,7 @@ resource "aws_subnet" "private_app_subnet" {
 }
 
 resource "aws_subnet" "private_data_subnet" {
-    count = length(var.private_data_cidrs)
+    count = var.private_data_sn_count
     vpc_id = aws_vpc.main_vpc.id
     cidr_block = var.private_data_cidrs[count.index]
     availability_zone = ["us-east-1a", "us-east-1b", "us-east-1c", "us-east-1d"][count.index]

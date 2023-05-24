@@ -3,7 +3,10 @@
 module "networking" {
     source = "./modules/networking"
     vpc_cidr = "10.0.0.0/16"
-    public_cidrs = ["10.0.2.0/24", "10.0.4.0/24"]
-    private_cidrs = ["10.0.1.0/24", "10.0.3.0/24"]
-    private_data_cidrs = ["10.0.5.0/24", "10.0.6.0/24"]
+    public_sn_count = 2
+    private_app_sn_count = 2
+    private_data_sn_count = 2
+    public_cidrs = [for i in range(2, 11, 2) : cidrsubnet("10.0.0.0/16", 8, i)]
+    private_cidrs = [for i in range(1, 10, 2) : cidrsubnet("10.0.0.0/16", 8, i)]
+    private_data_cidrs = [for i in range(12, 15, 1) : cidrsubnet("10.0.0.0/16", 8, i)]
 }

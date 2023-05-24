@@ -24,3 +24,18 @@ variable "private_data_cidrs" {
     type = list
     default = ["10.0.5.0/24", "10.0.6.0/24"]
 }
+ 
+variable "public_sn_count" {
+    type = number
+    default = 2
+}
+
+variable "private_app_sn_count" {
+    type = number
+    default = 2
+}
+
+variable "private_data_sn_count" {
+    type = number
+    default = 2
+}
