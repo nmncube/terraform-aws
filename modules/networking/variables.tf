@@ -39,3 +39,7 @@ variable "private_data_sn_count" {
     type = number
     default = 2
 }
+
+variable "access_ip" {
+    type = string
+}
